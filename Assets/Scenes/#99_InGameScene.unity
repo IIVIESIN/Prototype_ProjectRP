@@ -269,12 +269,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cf69e0e8eb9b64095d70f34e1afecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invertDragDirection: 0
-  dragMoveSpeed: 5
+  dragMoveSpeed: 6
+  minBorder: {x: 0, y: 0}
+  maxBorder: {x: 0, y: 0}
   zoomSpeed: 1
   zoomSmoothness: 8
   minZoom: 3
-  maxZoom: 10
+  maxZoom: 8
 --- !u!1 &639175290
 GameObject:
   m_ObjectHideFlags: 0

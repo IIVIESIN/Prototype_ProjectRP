@@ -5,8 +5,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [Header("카메라 이동 관련")]
-    [SerializeField] private bool invertDragDirection;
     [SerializeField] private float dragMoveSpeed;
+
+    [Header("Border")]
+    [SerializeField] private Vector2 minBorder;
+    [SerializeField] private Vector2 maxBorder;
 
     [Header("줌 설정")]
     [SerializeField] private float zoomSpeed = 0.5f;
@@ -18,7 +21,7 @@ public class CameraController : MonoBehaviour
     private float _targetZoom;
     private float _defaultCameraZPos;
     private Vector3 _dragStartPos;
-    private Vector3 _targetPos;
+    private Vector3 _targetPos = new(0, 0, -10);
     private Vector3 _remainedDistance;
 
     private void Awake()
@@ -48,7 +51,11 @@ public class CameraController : MonoBehaviour
             _targetPos.z = _defaultCameraZPos;
         }
 
-        transform.position = Vector3.Lerp(transform.position, _targetPos, Time.deltaTime * dragMoveSpeed);
+        if (Vector3.Distance(transform.position, _targetPos) >= 0.1f)
+        {
+            transform.position = Vector3.Lerp(transform.position, _targetPos, Time.deltaTime * dragMoveSpeed);
+            Debug.Log("Update TransformPosition");
+        }
     }
 
     private void HandleZoom()
